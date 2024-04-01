@@ -7,6 +7,8 @@ Error: From Project 1, all data was in 1 file not seperate
 
 import requests
 from bs4 import BeautifulSoup
+from module1.file_handler import
+from module_2.data_processing import
 
 def scrape_article(url):
     try:

@@ -1,3 +1,10 @@
+"""
+Main Program Functions
+Goal: Read urls from a file and scrape data into individual files
+Error: From Project 1, all data was in 1 file not seperate
+"""
+
+
 import requests
 from bs4 import BeautifulSoup
 

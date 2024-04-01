@@ -1,3 +1,8 @@
+#SOLID Principle - Single Responsibility Principle
+#In this case, the data_processing file follows this principle by only handling one responsibility.
+#The file is only responsible for hanlding data processing of the information and that is it.
+#Splitting up the responsibilities makes sure that the data_processing file handles scraping the data, while the file_handling file reads the data and saves it to the proper file.
+
 #Input
 #file_path - The path to the text file containing URLs
 

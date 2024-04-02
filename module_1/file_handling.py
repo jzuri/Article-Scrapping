@@ -15,25 +15,32 @@
 #save_content_to_file(file_path, url, content) function saves content to a text file specified by file_path
 
 
-import os
+import os  
+import requests 
 
-def read_urls_from_file(file_path):
-    """Read URLs from a text file and return a list."""
-    try:
-        with open(file_path, 'r') as file:
-            urls = file.readlines()
-        return [url.strip() for url in urls]
-    except FileNotFoundError:
-        print("File not found.")
-        return []
+class FileHandling:
+    def __init__(self):
+        pass
 
-def save_content_to_file(file_path, url, content):
-    """Save the content to a text file."""
-    try:
-        with open(file_path, 'a') as output_file:
-            output_file.write(f"URL: {url}\n")
-            output_file.write(content)
-            output_file.write("\n\n")
-        print("Content saved to file.")
-    except IOError:
-        print("Error writing to file.")
+    def save_file(self, idx, title, body_texts, output_dir):
+        filename = f"{output_dir}/article{idx}.txt" 
+        with open(filename, "w", encoding="utf-8") as file: 
+            file.write(f"Title: {title}\n")  # Writing the title to the file
+            file.write(f"Body: {body_texts}\n\n")  # Writing the body text to the file
+
+    def raw_html(self, idx, url, output_dir):
+        filename = f"{output_dir}/raw_{idx}.html"  
+        response = requests.get(url)  
+        raw_html = response.text  # Getting the raw HTML content from the response
+        with open(filename, "w", encoding="utf-8") as file:  # Opening the file in write mode
+            file.write(raw_html)  # Writing the raw HTML content to the file
+
+    def create_directory(self, directory):
+        if not os.path.exists(directory): 
+            os.makedirs(directory)  # Creating the directory
+
+    def summary_to_file(self, idx, title, summary, output_dir):
+        filename = f"{output_dir}/summary{idx}.txt"
+        with open(filename, "w", encoding="utf-8") as file:
+            file.write(f"Title: {title}\n")  # Writing the title to the file
+            file.write(f"Summary: {summary}\n\n")  # Writing the summary to the file

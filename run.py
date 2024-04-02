@@ -5,6 +5,7 @@ Error: From Project 1, all data was in 1 file not seperate
 """
 
 import requests
+import sys
 from bs4 import BeautifulSoup
 from module_1.file_handling import FileHandling
 #from module_1.file_handling import save_content_to_file

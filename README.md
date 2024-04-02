@@ -43,17 +43,17 @@ api_key = 'YOUR_API_KEY'
 openai.api_key = api_key
 
 # Prompt example
-prompt = "C's may or may not get degrees???"
+ex_prompt = "C's may or may not get degrees???"
 
-# Make an API call to generate text based on the prompt
-response = openai.Completion.create(
-    engine="text-davinci-003",
-    prompt=prompt,
-    max_tokens=50
+# Make an API call to generate text based on the prompt example
+result = openai.Completion.create(
+    engine = "text-davinci-003",
+    ex_prompt = ex_prompt,
+    max_tokens = 50
 )
 
 # Print the generated text
-print(response.choices[0].text.strip())
+print(result.choices[0].text.strip())
 ```
 
 

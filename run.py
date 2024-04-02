@@ -4,13 +4,14 @@ Goal: Read urls from a file and scrape data into individual files
 Error: From Project 1, all data was in 1 file not seperate
 """
 
-
 import requests
 from bs4 import BeautifulSoup
-from module1.file_handler import read_urls_from_file
-from module1.file_handler import save_content_to_file
+from module1.file_handling import read_urls_from_file
+from module1.file_handling import save_content_to_file
 from module_2.data_processing import scrape_article
+from Adding_API.LLM_API import api_client
 
+"""
 def scrape_article(url):
     try:
         #Grabbing the webpage data
@@ -31,26 +32,36 @@ def scrape_article(url):
     except requests.exceptions.RequestException as e:
         print(f"Error fetching url, lol")
         return None
+"""
 
 def main():
-    # Read URLs from the text file
-    with open('article_urls.txt', 'r') as file:
-        urls = file.readlines()
+    input_file = sys.argv[1]                                          # Getting the path to the input file from command-line arguments
+    with open(input_file, "r") as file:
+        urls = file.readlines()                                       # Reading URLs from the input file
 
-    # Remove whitespace characters like `\n` at the end of each line
-    urls = [url.strip() for url in urls]
+    data_processing = scrape_article()                                        # Creating an instance of WebScraper class
+    file_handling = save_content_to_file()                                      # Creating an instance of FileHandler class
+    api_client = api_client(api_key= 'YOUR_API_KEY' )                  # Creating an instance of LLMClient class with API key
 
-    # Scrape content for each URL
-    for url in urls:
-        article_content = scrape_article(url)
-        if article_content:
-            # Save the content to a text file
-            with open('articles.txt', 'a') as output_file:
-                output_file.write(f"URL: {url}\n")
-                output_file.write(article_content)
-                output_file.write("\n\n")
-            print(f"Article scraped")
-
+    for idx, url in enumerate(urls, start=1):
+        url = url.strip()                                              # Removing leading and trailing whitespaces from the URL
+        
+        # Scrape data from the URL
+        headline, body_texts, author, timestamp = data_processing.scrape_article(url)
+        
+        # Save the processed data to a file in the 'processed' directory
+        file_handling.save_to_file(idx, title=headline, body_texts=body_texts, output_dir="Data/processed")
+        
+        # Save the raw HTML content to a file in the 'raw' directory
+        file_handling.save_raw_html(idx, url, output_dir="Data/raw")
+        
+        # Generate summarized version of the article
+        result = f"The following article needs to be summarized in 50 words. Article: {body_texts}"
+        summarized_article = api_client.summarized_article(result)
+        
+        # Save the summarized version to a file in the 'summarized' directory
+        file_handling.save_summary_to_file(idx, title=headline, summary=summarized_article, output_dir="Data/summarized")
+        
 if __name__ == "__main__":
-    main()
+    main()  
 

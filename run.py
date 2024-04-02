@@ -50,17 +50,17 @@ def main():
         headline, body_texts, author, timestamp = data_processing.scrape_article(url)
         
         # Save the processed data to a file in the 'processed' directory
-        file_handling.save_to_file(idx, title=headline, body_texts=body_texts, output_dir="Data/processed")
+        file_handling.save_file(idx, title=headline, body_texts=body_texts, output_dir="Data/processed")
         
         # Save the raw HTML content to a file in the 'raw' directory
-        file_handling.save_raw_html(idx, url, output_dir="Data/raw")
+        file_handling.raw_html(idx, url, output_dir="Data/raw")
         
         # Generate summarized version of the article
         result = f"The following article needs to be summarized in 50 words. Article: {body_texts}"
         summarized_article = api_client.summarized_article(result)
         
         # Save the summarized version to a file in the 'summarized' directory
-        file_handling.save_summary_to_file(idx, title=headline, summary=summarized_article, output_dir="Data/summarized")
+        file_handling.summary_to_file(idx, title=headline, summary=summarized_article, output_dir="Data/summarized")
         
 if __name__ == "__main__":
     main()  

@@ -4,7 +4,7 @@ Module for interacting with the LLM (Large Language Model) API.
 
 import openai                                            # OpenAI library 
 
-class LLMClient:
+class api_client:
     def __init__(self, api_key):                         # Constructor for LLMClient class.
         self.api_key = api_key  
         openai.api_key = api_key                         # Setting the API key for OpenAI library

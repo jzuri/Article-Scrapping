@@ -6,8 +6,8 @@ Error: From Project 1, all data was in 1 file not seperate
 
 import requests
 from bs4 import BeautifulSoup
-from module1.file_handling import read_urls_from_file
-from module1.file_handling import save_content_to_file
+from module_1.file_handling import FileHandling
+#from module_1.file_handling import save_content_to_file
 from module_2.data_processing import scrape_article
 from Adding_API.LLM_API import api_client
 

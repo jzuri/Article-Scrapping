@@ -1,13 +1,13 @@
 # Article-Scrapping
 Jazmyn Zurita
-Project 1
+Project 1 - 3 
 
-##Breakdown:
+## Breakdown:
 main.py - holds the base code for the article scrapping
 articles_urls.txt - holds urls to be scraped
 articles.txt - holds scraped article data
 
-##Instructions:
+## Instructions:
 1. To scrap articles, posts the urls in the article_url.txt file
 2. Each article url will need to have its own line
 3. Run main.py after url links are entered
@@ -32,6 +32,29 @@ After creating an account with OpenAI, you can generate an API key to make your 
 4. Copy the generated API key and paste it somewhere secure
 
 ## How to make an API call
+```
+import openai
+# Note: For this program 'YOUR_API_KEY' should be replaced with your own unique API key!!!
+
+# Set your API key
+# Initializing OpenAI library with your API key
+
+api_key = 'YOUR_API_KEY'
+openai.api_key = api_key
+
+# Prompt example
+prompt = "C's may or may not get degrees???"
+
+# Make an API call to generate text based on the prompt
+response = openai.Completion.create(
+    engine="text-davinci-003",
+    prompt=prompt,
+    max_tokens=50
+)
+
+# Print the generated text
+print(response.choices[0].text.strip())
+```
 
 
 

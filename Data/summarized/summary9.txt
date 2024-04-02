@@ -1,1 +1,4 @@
+Title:
+      DOJ files suit against Apple, saying it's tried to monopolize the smartphone market
 
+Summary: The Justice Department has filed an antitrust lawsuit against Apple, alleging anticompetitive behavior in its App Store. Lawsuit focuses on Apple's commission structure and restrictions on in-app payments, stifles competition. This legal action adds to existing scrutiny of Apple's control over its platform and its impact on app developers.

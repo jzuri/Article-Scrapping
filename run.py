@@ -36,7 +36,7 @@ def scrape_article(url):
 """
 
 def main():
-    input_file = sys.argv[1]                                          # Getting the path to the input file from command-line arguments
+    input_file = sys.argv[0]                                          # Getting the path to the input file from command-line arguments
     with open(input_file, "r") as file:
         urls = file.readlines()                                       # Reading URLs from the input file
 

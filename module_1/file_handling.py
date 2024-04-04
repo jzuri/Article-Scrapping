@@ -26,7 +26,7 @@ class FileHandling:
         filename = f"{output_dir}/article{idx}.txt" 
         with open(filename, "w", encoding="utf-8") as file: 
             file.write(f"Title: {title}\n")  # Writing the title to the file
-            file.write(f"Body: {body_texts}\n\n")  # Writing the body text to the file
+            file.write(f"Text: {body_texts}\n\n")  # Writing the body text to the file
 
     def raw_html(self, idx, url, output_dir):
         filename = f"{output_dir}/raw_{idx}.html"  
